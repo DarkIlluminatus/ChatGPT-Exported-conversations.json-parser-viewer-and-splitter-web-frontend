@@ -31,7 +31,7 @@ This project is licensed under the **Conditional OMARG and AETHER-ENGINEERS Univ
 
 ## 🌱 Philosophy
 
-This tool is part of the OMARG-AIR/AID initiative to promote ethical, transparent, and user-empowered AI tooling. It is open-source by design and must remain so in all derivatives.
+This tool is part of the OMARG-AIR-AID initiative to promote ethical, transparent, and user-empowered AI tooling. It is open-source by design and must remain so in all derivatives.
 
 ## ✨ Credits
 
