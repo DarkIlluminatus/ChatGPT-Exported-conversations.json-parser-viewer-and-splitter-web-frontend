@@ -89,6 +89,7 @@
             margin-top: 10px;
             display: flex;
             gap: 10px;
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
         }
         .conversation-actions button {
             background-color: #007bff;
@@ -147,7 +148,8 @@
         <p>Upload your exported <code>conversations.json</code> file.</p>
         <input type="file" id="json-file-input" accept=".json">
         <div class="action-buttons">
-            <button id="download-all-btn" disabled>Download All Conversations (ZIP)</button>
+            <button id="download-all-btn" disabled>Download All Conversations (JSON ZIP)</button>
+            <button id="download-all-text-btn" disabled>Download All Conversations (Text ZIP)</button>
         </div>
         <div id="conversations-output">
             <p>Select a JSON file to view your conversations.</p>
