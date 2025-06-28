@@ -18,6 +18,8 @@ A blazing-fast, zero-dependency web frontend for parsing and exploring ChatGPT's
 3. Upload your `conversations.json` file.
 4. Click "View" to expand any conversation, or "Download" to save it.
 
+Alternatively simply give the .git to your websim.com AI (it should work!)
+
 ## 📜 License
 
 This project is licensed under the **Conditional OMARG and AETHER-ENGINEERS Universal License**. See [LICENSE](./LICENSE) for full terms.
