@@ -1,18 +1,26 @@
+import { saveAs } from 'https://cdn.skypack.dev/file-saver';
+import JSZip from 'https://cdn.skypack.dev/jszip';
+
 document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('json-file-input');
     const outputDiv = document.getElementById('conversations-output');
+    const downloadAllBtn = document.getElementById('download-all-btn');
+
+    let allConversations = []; // Store conversations globally once loaded
 
     fileInput.addEventListener('change', (event) => {
         const file = event.target.files[0];
 
         if (!file) {
             outputDiv.innerHTML = '<p>No file selected.</p>';
+            downloadAllBtn.disabled = true;
             return;
         }
 
         // Check file extension
         if (!file.name.endsWith('.json')) {
             outputDiv.innerHTML = '<p class="error-message">Please select a .json file.</p>';
+            downloadAllBtn.disabled = true;
             return;
         }
 
@@ -24,23 +32,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (!Array.isArray(jsonContent)) {
                     outputDiv.innerHTML = '<p class="error-message">Invalid JSON structure. Expected an array of conversations.</p>';
+                    downloadAllBtn.disabled = true;
                     return;
                 }
 
-                displayConversations(jsonContent);
+                allConversations = jsonContent; // Store the loaded conversations
+                displayConversations(allConversations);
+                downloadAllBtn.disabled = allConversations.length === 0; // Enable if conversations exist
 
             } catch (error) {
                 outputDiv.innerHTML = `<p class="error-message">Error parsing JSON file: ${error.message}</p>`;
                 console.error("Error parsing JSON:", error);
+                downloadAllBtn.disabled = true;
             }
         };
 
         reader.onerror = () => {
             outputDiv.innerHTML = `<p class="error-message">Error reading file: ${reader.error.message}</p>`;
             console.error("Error reading file:", reader.error);
+            downloadAllBtn.disabled = true;
         };
 
         reader.readAsText(file);
+    });
+
+    downloadAllBtn.addEventListener('click', async () => {
+        if (allConversations.length === 0) {
+            alert("No conversations to download. Please load a JSON file first.");
+            return;
+        }
+
+        downloadAllBtn.disabled = true;
+        const originalText = downloadAllBtn.textContent;
+        downloadAllBtn.textContent = 'Zipping...';
+
+        const zip = new JSZip();
+        let fileCount = 0;
+
+        allConversations.forEach(conv => {
+            try {
+                const title = conv.title || 'Untitled Conversation';
+                const createTime = conv.create_time ? new Date(conv.create_time * 1000).toISOString().slice(0, 10) : 'N/A';
+                const fileName = `${sanitizeFilename(title)}_chatgpt_${createTime}.json`;
+                const convJson = JSON.stringify(conv, null, 2);
+                zip.file(fileName, convJson);
+                fileCount++;
+            } catch (error) {
+                console.error(`Error processing conversation ${conv.title}:`, error);
+            }
+        });
+
+        if (fileCount === 0) {
+            outputDiv.insertAdjacentHTML('afterbegin', '<p class="error-message">No valid conversations found to zip.</p>');
+            downloadAllBtn.textContent = originalText;
+            downloadAllBtn.disabled = false;
+            return;
+        }
+
+        try {
+            const content = await zip.generateAsync({ type: "blob" });
+            const zipFileName = `all_chatgpt_conversations_${new Date().toISOString().slice(0, 10)}.zip`;
+            saveAs(content, zipFileName);
+        } catch (error) {
+            outputDiv.insertAdjacentHTML('afterbegin', `<p class="error-message">Error generating ZIP file: ${error.message}</p>`);
+            console.error("Error generating ZIP:", error);
+        } finally {
+            downloadAllBtn.textContent = originalText;
+            downloadAllBtn.disabled = false;
+        }
     });
 
     function displayConversations(conversations) {
