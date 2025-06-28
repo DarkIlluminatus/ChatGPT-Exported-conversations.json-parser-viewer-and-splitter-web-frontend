@@ -2,6 +2,9 @@
 
 A blazing-fast, zero-dependency web frontend for parsing and exploring ChatGPT's `conversations.json` export files. Built with Websim, this tool transforms OpenAI's massive, single-line ChatGPT exported conversation.json blobs into clean, collapsible, downloadable conversation threads.
 
+## Fully Functional demonstration via Github Pages:
+[https://darkilluminatus.github.io/ChatGPT-Exported-conversations.json-parser-viewer-and-splitter-web-frontend/](https://darkilluminatus.github.io/ChatGPT-Exported-conversations.json-parser-viewer-and-splitter-web-frontend/)
+
 ## 🚀 Features
 
 - 📂 Upload and parse `conversations.json` files instantly
