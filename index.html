@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Conversation Reader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        input[type="file"] {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+        }
+        #conversations-output {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .conversation-item {
+            background-color: #e9ecef;
+            border: 1px solid #dee2e6;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+            position: relative;
+        }
+        .conversation-item:hover {
+            background-color: #dfe6eb;
+        }
+        .conversation-item h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #007bff;
+        }
+        .conversation-item p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+        .conversation-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .conversation-actions button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.2s ease;
+        }
+        .conversation-actions button:hover {
+            background-color: #0056b3;
+        }
+
+        .conversation-content {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ced4da;
+            max-height: 400px; /* Limit height */
+            overflow-y: auto; /* Enable scrolling */
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .message-item {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            line-height: 1.4;
+        }
+        .user-message {
+            background-color: #e0f7fa; /* Light blue for user */
+            border-left: 4px solid #00bcd4;
+        }
+        .assistant-message {
+            background-color: #f1f8e9; /* Light green for assistant */
+            border-left: 4px solid #8bc34a;
+        }
+        .message-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #495057;
+        }
+        .message-item p {
+            white-space: pre-wrap; /* Preserve whitespace and line breaks */
+            font-size: 1em; /* Override default p font-size */
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ChatGPT Conversation Reader</h1>
+        <p>Upload your exported <code>conversations.json</code> file.</p>
+        <input type="file" id="json-file-input" accept=".json">
+        <div id="conversations-output">
+            <p>Select a JSON file to view your conversations.</p>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
