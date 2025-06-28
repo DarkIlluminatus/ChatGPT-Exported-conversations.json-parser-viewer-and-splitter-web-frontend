@@ -14,6 +14,6 @@ This project is open-source and is licensed under the Conditional OMARG and AETH
 
 6. **No Data Mining**: The project cannot be used for data collection or data mining activities. This includes using the project to collect, analyze, or mine data without explicit permission.
 
-7. **Preservation of Script**: The entire script must remain at the top of all future builds. No support can be offered if the prompt is altered in any way.
+7. **Preservation of Script**: The entire script must remain at the top of all future builds. No support can be offered if the code is altered in any way.
 
 8. **Forking**: Users are free to fork the project, but they must adhere to these Conditions, which are immutable.
