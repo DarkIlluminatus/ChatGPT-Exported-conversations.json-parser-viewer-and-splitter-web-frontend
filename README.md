@@ -9,6 +9,7 @@ A blazing-fast, zero-dependency web frontend for parsing and exploring ChatGPT's
 - 💾 Download any conversation as a standalone JSON file
 - ⚡ No lag, even with massive files (140MB+ tested)
 - 🧩 Fully client-side—no data leaves your browser
+- ✅ **Update:** Added a "Download All" button! You can now export all conversations in a single ZIP file with significantly improved formatting over the original `conversations.json`.
 
 ## 🛠️ Usage
 
